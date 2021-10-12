@@ -37,6 +37,7 @@ client.on('messageCreate', async (message) => {
 
   const checkAdmins = adminUsers.some((e) => e.username === message.author.username && e.tag === message.author.discriminator)
   if (message.content === resultsCmd && checkAdmins) {
+    message.delete()
     const res = fs.readFileSync(`./messages.json`, { encoding: 'utf8' })
     const messages = JSON.parse(res)
     const currentDate = new Date()
@@ -62,6 +63,7 @@ client.on('messageCreate', async (message) => {
     fs.writeFileSync('./currentDir.json', JSON.stringify(dir))
   }
   if (message.content === startCmd && checkAdmins) {
+    message.delete()
     let messages = []
     const guild = await client.guilds.fetch(guildId)
     const channel = guild.channels.cache.get(channelId)
@@ -70,7 +72,7 @@ client.on('messageCreate', async (message) => {
       const message = await channel.send(`${match[0]} vs ${match[1]}`)
       await message.react('🔵')
       await message.react('🔴')
-    
+
       messages.push({
         messageId: message.id,
         name: `${match[0]}_vs_${match[1]}`,
