@@ -26,8 +26,8 @@ const adminUsers = [
 ]
 
 
-const guildId = '527453668858003476'
-const channelId = '877333930603339797'
+const guildId = '734427161695617125'
+const channelId = '896823650727104523'
 
 client.on('ready', async () => {})
 
